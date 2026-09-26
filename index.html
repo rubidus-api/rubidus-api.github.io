@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>rubidus-api</title>
+<meta name="description" content="Lean software: nothing wasted, easy to change, dependable in use.">
+<style>
+:root {
+  color-scheme: light dark;
+  --fg: #1a1a1a; --bg: #fdfdfc; --muted: #666;
+  --rule: #ddd; --accent: #3b6ea5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #e6e6e6; --bg: #16181a; --muted: #9aa0a6;
+    --rule: #333; --accent: #7aa9d6;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: "Noto Sans CJK KR", "Noto Sans KR", system-ui, sans-serif;
+  line-height: 1.7;
+}
+main { max-width: 58rem; margin: 0 auto; padding: 3rem 1.2rem 4rem; }
+h1 { font-size: 2rem; margin: 0 0 1rem; }
+h2 { font-size: .95rem; margin: 0; letter-spacing: .06em; text-transform: uppercase; }
+h3 { font-size: 1.15rem; margin: 0; }
+p { margin: .5rem 0; }
+.lead { margin: .1rem 0; }
+.small { color: var(--muted); font-size: .88rem; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+section { border-top: 1px solid var(--rule); padding: 1.5rem 0 1.1rem; scroll-margin-top: 1rem; }
+
+/* English left, Korean right; paired cells share a row. */
+.pairs { display: grid; grid-template-columns: 1fr 1fr; column-gap: 2.4rem; align-items: start; }
+.pairs > .ko { border-left: 1px solid var(--rule); padding-left: 2.4rem; }
+.inline { margin: .3rem 0 0; }
+.inline a { white-space: nowrap; }
+.sep { color: var(--muted); }
+.collabel {
+  margin: 0 0 .2rem; font-size: .7rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted);
+}
+/* The tree: group headings rule the page, project entries hang under them. */
+section.group { border-top: 2px solid var(--fg); padding: 1.4rem 0 .4rem; }
+section.group + section { border-top: 0; }
+ul.toc { list-style: none; margin: .35rem 0 0; padding: 0; }
+ul.toc ul {
+  list-style: none; margin: .1rem 0 .5rem;
+  padding-left: .75rem; border-left: 1px solid var(--rule);
+}
+ul.toc > li { margin-top: .35rem; }
+ul.toc > li:first-child { margin-top: 0; }
+ul.toc a.g { color: var(--fg); font-weight: 600; }
+ul.toc ul li::before { content: "·"; color: var(--muted); margin-right: .35rem; }
+
+footer { margin-top: 1.6rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
+@media (max-width: 46rem) {
+  .pairs { grid-template-columns: 1fr; column-gap: 0; }
+  .pairs > .ko { border-left: 0; padding-left: 0; padding-top: .2rem; }
+  main { padding: 2rem 1rem 3rem; }
+  h1 { font-size: 1.6rem; }
+}
+</style>
+</head>
+<body id="top">
+<main>
+<header>
+  <h1>rubidus-api</h1>
+<div class="pairs">
+  <div class="en"><p class="collabel">English</p><p class="lead">Lean software: nothing wasted, easy to change, dependable in use.</p></div>
+  <div class="ko"><p class="collabel">한국어</p><p class="lead">낭비 없이 날씬하고, 고치기 쉬우며, 안정적으로 동작하는 제품을 지향한다.</p></div>
+  <div class="en"><ul class="toc"><li><a class="g" href="#g-c">C</a><ul><li><a href="#proven_c_lib">proven C library</a></li><li><a href="#lowstruct">lowstruct</a></li><li><a href="#prov_text_editor">prov Text Editor</a></li><li><a href="#proven_c_book">Proven C Book</a></li></ul></li><li><a class="g" href="#g-lang">Programming language</a><ul><li><a href="#lowent_lang">Lowent</a></li></ul></li><li><a class="g" href="#g-win32">Win32 API</a><ul><li><a href="#hgfloater">HGFloater</a></li><li><a href="#jamotong_ime">Jamotong IME</a></li><li><a href="#rubraview">Rubraview</a></li></ul></li><li><a class="g" href="#g-android">Android apps</a><ul><li><a href="#reteclock_apk">ReteClock</a></li><li><a href="#retekey_apk">ReteKey</a></li><li><a href="#reteget_apk">ReteGet</a></li></ul></li></ul></div>
+  <div class="ko"><ul class="toc"><li><a class="g" href="#g-c">C 언어</a><ul><li><a href="#proven_c_lib">proven C 라이브러리</a></li><li><a href="#lowstruct">lowstruct</a></li><li><a href="#prov_text_editor">prov 텍스트 편집기</a></li><li><a href="#proven_c_book">프로븐 C 북</a></li></ul></li><li><a class="g" href="#g-lang">프로그래밍 언어</a><ul><li><a href="#lowent_lang">로우엔트</a></li></ul></li><li><a class="g" href="#g-win32">Win32 API</a><ul><li><a href="#hgfloater">HGFloater</a></li><li><a href="#jamotong_ime">자모통 입력기</a></li><li><a href="#rubraview">Rubraview</a></li></ul></li><li><a class="g" href="#g-android">안드로이드 앱</a><ul><li><a href="#reteclock_apk">ReteClock</a></li><li><a href="#retekey_apk">ReteKey</a></li><li><a href="#reteget_apk">ReteGet</a></li></ul></li></ul></div>
+</div>
+</header>
+
+<section class="group" id="g-c">
+<div class="pairs">
+  <div class="en"><h2>C</h2><p class="small">The library, a configuration format and the editor built on it, and the book that teaches it.</p></div>
+  <div class="ko"><h2>C 언어</h2><p class="small">라이브러리와 그 위에 지은 설정 형식과 편집기, 그리고 그것을 가르치는 책.</p></div>
+</div>
+</section>
+
+<section id="proven_c_lib">
+<div class="pairs">
+  <div class="en head"><h3><a href="https://github.com/rubidus-api/proven_c_lib" target="_blank" rel="noopener" title="A general-purpose C library with explicit allocators (arena, pool, heap), strings that carry their own length, containers, formatting and scanning, files, hashing and randomness --- the everyday layer a C program keeps rewriting, with ownership and failure visible in every signature. It is the library the Proven C Book teaches against, and the base other projects here are built on. Its manual is published in both languages, with every public function shown in a program the build compiles and runs.">proven C library</a></h3></div>
+  <div class="ko head"><h3><a href="https://github.com/rubidus-api/proven_c_lib" target="_blank" rel="noopener" title="명시적 할당자(아레나, 풀, 힙), 길이를 지니고 다니는 문자열, 컨테이너, 서식화와 파싱, 파일·해시·난수까지 --- C 프로그램이 매번 다시 짜게 되는 층을 모아 둔 범용 C 라이브러리이다. 소유와 실패가 모든 시그니처에 드러난다. 《프로븐 C 북》이 교재로 삼는 라이브러리이며, 여기 있는 다른 프로젝트들의 토대이기도 하다. 매뉴얼은 두 언어로 공개되어 있고, 모든 공개 함수가 빌드가 컴파일하고 실행하는 예제 안에 나온다.">proven C 라이브러리</a></h3></div>
+  <div class="en"><p class="lead">A modern C library written strictly to C23, built to shrink undefined behaviour.</p></div>
+  <div class="ko"><p class="lead">C23 표준을 엄격히 지켜 미정의 동작을 줄이려 만든 모던 C 라이브러리.</p></div>
+  <div class="en"><p class="inline"><a href="https://rubidus-api.github.io/proven_c_lib/en/" title="Read the manual online / 매뉴얼을 온라인으로 읽기">HTML_en</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_lib/releases/download/v0.1.1/proven_c_lib-v0.1.1-en-manual.pdf" title="PDF">PDF_en</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_lib/releases/download/v0.1.1/proven_c_lib-v0.1.1.zip" title="zip archive">ZIP</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_lib/releases/tag/v0.1.1" title="Release page / 릴리스 페이지">Release</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_lib" title="Source repository / 소스 저장소">GitHub</a></p></div>
+  <div class="ko"><p class="inline"><a href="https://rubidus-api.github.io/proven_c_lib/ko/" title="매뉴얼을 온라인으로 읽기 / Read the manual online">HTML_ko</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_lib/releases/download/v0.1.1/proven_c_lib-v0.1.1-ko-manual.pdf" title="PDF">PDF_ko</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_lib/releases/download/v0.1.1/proven_c_lib-v0.1.1.zip" title="zip archive">ZIP</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_lib/releases/tag/v0.1.1" title="Release page / 릴리스 페이지">릴리스</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_lib" title="Source repository / 소스 저장소">GitHub</a></p></div>
+</div>
+</section>
+
+<section id="lowstruct">
+<div class="pairs">
+  <div class="en head"><h3><a href="https://github.com/rubidus-api/lowstruct" target="_blank" rel="noopener" title="A configuration file (.lows) is a list of statements: names, then values, then a full stop — no equals signs, brackets or commas. Every value keeps its literal kind, a key is written exactly once, backslashes mean only what a closed escape set says, and every rejection names a stable code, a line and a column. The C library is built on proven_c_lib and ships static and shared builds for Linux and Windows (a DLL included); the Node.js and Python packages have no dependencies. The specification and the manual are published in both languages.">lowstruct</a></h3></div>
+  <div class="ko head"><h3><a href="https://github.com/rubidus-api/lowstruct" target="_blank" rel="noopener" title="설정 파일(.lows)은 문장의 목록이다. 이름, 값, 마침표 — 등호도 괄호도 쉼표도 없다. 값은 적힌 종류를 그대로 지니고, 키는 정확히 한 번만 쓰며, 역슬래시는 닫힌 이스케이프 집합이 정한 뜻만 가지고, 거부할 때는 바뀌지 않는 코드와 줄·열을 알려 준다. C 라이브러리는 proven_c_lib 위에 지었으며 Linux 와 Windows 용 정적·공유 라이브러리(DLL 포함)를 배포한다. Node.js 와 Python 패키지는 의존성이 없다. 명세와 매뉴얼은 두 언어로 공개되어 있다.">lowstruct</a></h3></div>
+  <div class="en"><p class="lead">A small, strict configuration file format, with parsers in C, Node.js and Python that pass one conformance suite.</p></div>
+  <div class="ko"><p class="lead">작고 엄격한 설정 파일 형식. C·Node.js·Python 파서가 하나의 적합성 사례를 함께 통과한다.</p></div>
+  <div class="en"><p class="inline"><a href="https://rubidus-api.github.io/lowstruct/en/" title="Read the manual and the specification online / 매뉴얼을 온라인으로 읽기">HTML_en</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowstruct/releases/download/v0.0.1/lowstruct-0.0.1-en-manual.pdf" title="PDF">PDF_en</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowstruct/releases/download/v0.0.1/lowstruct-0.0.1-linux-x86_64.tar.gz" title="tar archive">C_Linux_x64</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowstruct/releases/download/v0.0.1/lowstruct-0.0.1-node.zip" title="zip archive">Node.js</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowstruct/releases/download/v0.0.1/lowstruct-0.0.1-python.zip" title="zip archive">Python</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowstruct/releases/download/v0.0.1/lowstruct-0.0.1-windows-x86_64.zip" title="zip archive">C_Windows_x64</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowstruct/releases/tag/v0.0.1" title="Release page / 릴리스 페이지">Release</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowstruct" title="Source repository / 소스 저장소">GitHub</a></p></div>
+  <div class="ko"><p class="inline"><a href="https://rubidus-api.github.io/lowstruct/ko/" title="매뉴얼과 명세를 온라인으로 읽기 / Read the manual online">HTML_ko</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowstruct/releases/download/v0.0.1/lowstruct-0.0.1-ko-manual.pdf" title="PDF">PDF_ko</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowstruct/releases/download/v0.0.1/lowstruct-0.0.1-linux-x86_64.tar.gz" title="tar archive">C_Linux_x64</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowstruct/releases/download/v0.0.1/lowstruct-0.0.1-node.zip" title="zip archive">Node.js</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowstruct/releases/download/v0.0.1/lowstruct-0.0.1-python.zip" title="zip archive">Python</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowstruct/releases/download/v0.0.1/lowstruct-0.0.1-windows-x86_64.zip" title="zip archive">C_Windows_x64</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowstruct/releases/tag/v0.0.1" title="Release page / 릴리스 페이지">릴리스</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowstruct" title="Source repository / 소스 저장소">GitHub</a></p></div>
+</div>
+</section>
+
+<section id="prov_text_editor">
+<div class="pairs">
+  <div class="en head"><h3><a href="https://github.com/rubidus-api/prov_text_editor" target="_blank" rel="noopener" title="A terminal editor with its own regular-expression engine, modal panels, syntax highlighting for some twenty languages, mouse support, word wrap, and a hex and binary editing mode that keeps raw bytes raw. Single static binaries are published for Linux (x86-64, arm64, armhf) and Windows.">prov Text Editor</a></h3></div>
+  <div class="ko head"><h3><a href="https://github.com/rubidus-api/prov_text_editor" target="_blank" rel="noopener" title="자체 정규식 엔진, 공통 모달 패널, 스무 종 남짓의 문법 강조, 마우스 지원, 워드랩, 그리고 원본 바이트를 그대로 지키는 헥스·바이너리 편집 모드를 갖춘 터미널 편집기이다. 리눅스(x86-64, arm64, armhf)와 윈도우용 단일 실행 파일을 배포한다.">prov 텍스트 편집기</a></h3></div>
+  <div class="en"><p class="lead">A terminal text editor in pure C: minimal dependencies, deterministic control, definite response.</p></div>
+  <div class="ko"><p class="lead">순수 C 터미널 텍스트 편집기. 의존성 최소, 결정적 제어, 확실한 반응.</p></div>
+  <div class="en"><p class="inline"><a href="https://github.com/rubidus-api/prov_text_editor/releases/download/v0.4/prov-v0.4-linux-arm64" title="Linux binary, arm64">Linux_arm64</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/prov_text_editor/releases/download/v0.4/prov-v0.4-linux-armhf" title="Linux binary, armhf">Linux_armhf</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/prov_text_editor/releases/download/v0.4/prov-v0.4-linux-x64" title="Linux binary, x86-64">Linux_x64</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/prov_text_editor/releases/download/v0.4/prov-v0.4-windows-x64.exe" title="Windows executable, 64-bit">Windows_x64</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/prov_text_editor/releases/tag/v0.4" title="Release page / 릴리스 페이지">Release</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/prov_text_editor" title="Source repository / 소스 저장소">GitHub</a></p></div>
+  <div class="ko"><p class="inline"><a href="https://github.com/rubidus-api/prov_text_editor/releases/download/v0.4/prov-v0.4-linux-arm64" title="Linux binary, arm64">Linux_arm64</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/prov_text_editor/releases/download/v0.4/prov-v0.4-linux-armhf" title="Linux binary, armhf">Linux_armhf</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/prov_text_editor/releases/download/v0.4/prov-v0.4-linux-x64" title="Linux binary, x86-64">Linux_x64</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/prov_text_editor/releases/download/v0.4/prov-v0.4-windows-x64.exe" title="Windows executable, 64-bit">Windows_x64</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/prov_text_editor/releases/tag/v0.4" title="Release page / 릴리스 페이지">릴리스</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/prov_text_editor" title="Source repository / 소스 저장소">GitHub</a></p></div>
+</div>
+</section>
+
+<section id="proven_c_book">
+<div class="pairs">
+  <div class="en head"><h3><a href="https://github.com/rubidus-api/proven_c_book" target="_blank" rel="noopener" title="A book on C for people starting from zero. It opens with how a computer is actually built rather than with a list of syntax, takes the current standard (C23) as its default, and ends as a working manual for the proven C library. Both editions are complete: thirteen parts, one hundred and three chapters, appendices A through G, and an index.">Proven C Book</a></h3></div>
+  <div class="ko head"><h3><a href="https://github.com/rubidus-api/proven_c_book" target="_blank" rel="noopener" title="아무것도 모르는 상태에서 시작하는 사람을 위한 C 책이다. 문법 나열이 아니라 컴퓨터가 실제로 어떻게 만들어져 있는지에서 출발하고, 현행 표준인 C23을 기본으로 삼으며, 마지막에는 proven C 라이브러리의 사용 설명서가 된다. 한국어판과 영어판 모두 13부 103장과 부록 A~G, 찾아보기까지 완성되어 있다.">프로븐 C 북</a></h3></div>
+  <div class="en"><p class="lead">A C book for absolute beginners that starts from how a computer is built.</p></div>
+  <div class="ko"><p class="lead">컴퓨터가 어떻게 만들어졌는지에서 출발하는, 완전 초보자를 위한 C 입문서.</p></div>
+  <div class="en"><p class="inline"><a href="https://rubidus-api.github.io/proven_c_book/en/" title="Read online / 온라인으로 읽기">HTML_en</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_book/releases/download/v0.94.1/proven_c_book-v0.94.1-all.zip" title="everything: all editions and formats">ZIP_all</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_book/releases/download/v0.94.1/proven_c_book-v0.94.1-en.pdf" title="PDF">PDF_en</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_book/releases/download/v0.94.1/proven_c_book-v0.94.1-en.zip" title="zip archive">ZIP_en</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_book/releases/tag/v0.94.1" title="Release page / 릴리스 페이지">Release</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_book" title="Source repository / 소스 저장소">GitHub</a></p></div>
+  <div class="ko"><p class="inline"><a href="https://rubidus-api.github.io/proven_c_book/ko/" title="Read online / 온라인으로 읽기">HTML_ko</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_book/releases/download/v0.94.1/proven_c_book-v0.94.1-all.zip" title="everything: all editions and formats">ZIP_all</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_book/releases/download/v0.94.1/proven_c_book-v0.94.1-ko.pdf" title="PDF">PDF_ko</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_book/releases/download/v0.94.1/proven_c_book-v0.94.1-ko.zip" title="zip archive">ZIP_ko</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_book/releases/tag/v0.94.1" title="Release page / 릴리스 페이지">릴리스</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/proven_c_book" title="Source repository / 소스 저장소">GitHub</a></p></div>
+</div>
+</section>
+
+<section class="group" id="g-lang">
+<div class="pairs">
+  <div class="en"><h2>Programming language</h2><p class="small">A systems language and its compiler, built on the C library above.</p></div>
+  <div class="ko"><h2>프로그래밍 언어</h2><p class="small">위의 C 라이브러리 위에 지은 시스템 프로그래밍 언어와 그 컴파일러.</p></div>
+</div>
+</section>
+
+<section id="lowent_lang">
+<div class="pairs">
+  <div class="en head"><h3><a href="https://github.com/rubidus-api/lowent_lang" target="_blank" rel="noopener" title="Lowent keeps C&#x27;s machine model but drops its traps. In their place are four promises the compiler checks: contracts in the signature, declared effects, capabilities passed in as values instead of a global heap or stdout, and ownership without a garbage collector. The compiler, lowentc, is written in C23 on the proven C library; it runs programs on a VM and also emits C, and the two back ends are checked against each other. The manual is published in both languages: ten parts and fifty chapters, the standard library module by module, and what has (and has not) been proven. The language is still under active development, and its design is still changing.">Lowent</a></h3></div>
+  <div class="ko head"><h3><a href="https://github.com/rubidus-api/lowent_lang" target="_blank" rel="noopener" title="C 의 기계 모델은 그대로 두고 그 함정을 걷어 낸 언어이다. 그 자리에 컴파일러가 검사하는 약속 넷을 두었다 --- 서명에 적는 계약, 선언하는 효과, 전역 힙이나 전역 출력 대신 값으로 건네받는 권한, 가비지 컬렉터 없는 소유. 컴파일러 lowentc 는 proven C 라이브러리 위에 C23 으로 쓰였고, 프로그램을 VM 으로 돌리는 동시에 C 로도 내보내 두 결과를 서로 맞대어 검사한다. 매뉴얼은 두 언어로 공개되어 있다. 10부 50장에 표준 라이브러리를 모듈마다 싣고, 무엇이 증명되었고 무엇이 아닌지까지 다룬다. 언어는 아직 개발 중이며 설계도 계속 바뀌고 있다.">로우엔트</a></h3></div>
+  <div class="en"><p class="lead">A low-entropy systems language where the signature of a function tells you what it can do.</p></div>
+  <div class="ko"><p class="lead">함수의 서명만 읽어도 무엇을 할 수 있는지 아는, 엔트로피가 낮은 시스템 프로그래밍 언어.</p></div>
+  <div class="en"><p class="inline"><a href="https://rubidus-api.github.io/lowent_lang/manual/html-en/" title="Read the manual online / 매뉴얼을 온라인으로 읽기">HTML_en</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowent_lang/releases/tag/v1.3.0" title="Release page / 릴리스 페이지">Release</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowent_lang" title="Source repository / 소스 저장소">GitHub</a></p></div>
+  <div class="ko"><p class="inline"><a href="https://rubidus-api.github.io/lowent_lang/manual/html-ko/" title="매뉴얼을 온라인으로 읽기 / Read the manual online">HTML_ko</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowent_lang/releases/tag/v1.3.0" title="Release page / 릴리스 페이지">릴리스</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/lowent_lang" title="Source repository / 소스 저장소">GitHub</a></p></div>
+</div>
+</section>
+
+<section class="group" id="g-win32">
+<div class="pairs">
+  <div class="en"><h2>Win32 API</h2><p class="small">Windows desktop programs in pure C against the Windows API alone.</p></div>
+  <div class="ko"><h2>Win32 API</h2><p class="small">Windows API만 쓰는 순수 C로 만든 Windows 바탕화면 프로그램.</p></div>
+</div>
+</section>
+
+<section id="hgfloater">
+<div class="pairs">
+  <div class="en head"><h3><a href="https://github.com/rubidus-api/hgfloater" target="_blank" rel="noopener" title="A lightweight quick launcher and task switcher built exclusively with pure C and the Windows API — no framework, no runtime to install. It puts translucent floating boxes on the desktop: a task box with per-window icons, a hover tab box that reaches inside browsers and Explorer, a command box, notes, and a clipboard history, all driven by keyboard as readily as by mouse.">HGFloater</a></h3></div>
+  <div class="ko head"><h3><a href="https://github.com/rubidus-api/hgfloater" target="_blank" rel="noopener" title="순수 C와 Windows API만으로 만든 가벼운 빠른 실행기 겸 작업 전환기이다. 별도 프레임워크나 런타임 설치가 필요 없다. 반투명 플로팅 박스를 바탕화면에 띄운다. 창별 아이콘이 있는 작업 상자, 브라우저와 탐색기의 탭까지 읽는 호버 탭 상자, 명령 상자, 노트, 클립보드 기록을 마우스만큼이나 키보드로도 다룰 수 있다.">HGFloater</a></h3></div>
+  <div class="en"><p class="lead">A floating quick launcher and task switcher for Windows 11, in pure C and WinAPI.</p></div>
+  <div class="ko"><p class="lead">순수 C와 WinAPI로 만든 Windows 11 플로팅 실행기 겸 작업 전환기.</p></div>
+  <div class="en"><p class="inline"><a href="https://github.com/rubidus-api/hgfloater/releases/latest/download/hgfloater.exe" title="Windows executable">EXE</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/hgfloater/releases/tag/v0.17.13" title="Release page / 릴리스 페이지">Release</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/hgfloater" title="Source repository / 소스 저장소">GitHub</a></p></div>
+  <div class="ko"><p class="inline"><a href="https://github.com/rubidus-api/hgfloater/releases/latest/download/hgfloater.exe" title="Windows executable">EXE</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/hgfloater/releases/tag/v0.17.13" title="Release page / 릴리스 페이지">릴리스</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/hgfloater" title="Source repository / 소스 저장소">GitHub</a></p></div>
+</div>
+</section>
+
+<section id="jamotong_ime">
+<div class="pairs">
+  <div class="en head"><h3><a href="https://github.com/rubidus-api/jamotong_ime" target="_blank" rel="noopener" title="A Windows input method editor written in pure C against the Text Services Framework, with inline composition, a candidate window, and a non-interfering mode for applications that dislike being helped. Both 32-bit and 64-bit hosts are supported, which matters because a single misbehaving IME breaks typing everywhere.">Jamotong IME</a></h3></div>
+  <div class="ko head"><h3><a href="https://github.com/rubidus-api/jamotong_ime" target="_blank" rel="noopener" title="TSF(Text Services Framework) 위에 순수 C로 작성한 Windows 입력기이다. 인라인 조합, 후보 창, 그리고 간섭을 싫어하는 프로그램을 위한 무간섭 모드를 갖추고 있다. 32비트와 64비트 호스트를 모두 지원한다. 입력기 하나가 잘못되면 모든 곳에서 타자가 깨지기 때문이다.">자모통 입력기</a></h3></div>
+  <div class="en"><p class="lead">A Hangul input method for Windows 11 built on the Text Services Framework, in pure C.</p></div>
+  <div class="ko"><p class="lead">TSF 기반으로 순수 C로 만든 Windows 11 한글 입력기.</p></div>
+  <div class="en"><p class="inline"><a href="https://github.com/rubidus-api/jamotong_ime/releases/download/v0.60.0/jamotong-0.60.0.msi" title="jamotong-0.60.0.msi">jamotong-0.60.0.msi</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/jamotong_ime/releases/download/v0.60.0/jamotong-0.60.0.zip" title="zip archive">ZIP</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/jamotong_ime/releases/tag/v0.60.0" title="Release page / 릴리스 페이지">Release</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/jamotong_ime" title="Source repository / 소스 저장소">GitHub</a></p></div>
+  <div class="ko"><p class="inline"><a href="https://github.com/rubidus-api/jamotong_ime/releases/download/v0.60.0/jamotong-0.60.0.msi" title="jamotong-0.60.0.msi">jamotong-0.60.0.msi</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/jamotong_ime/releases/download/v0.60.0/jamotong-0.60.0.zip" title="zip archive">ZIP</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/jamotong_ime/releases/tag/v0.60.0" title="Release page / 릴리스 페이지">릴리스</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/jamotong_ime" title="Source repository / 소스 저장소">GitHub</a></p></div>
+</div>
+</section>
+
+<section id="rubraview">
+<div class="pairs">
+  <div class="en head"><h3><a href="https://github.com/rubidus-api/rubraview" target="_blank" rel="noopener" title="A desktop viewer that stays fast because it is nothing but C and the Windows API. The canvas is drawn with Direct2D, so panning and sub-pixel zoom keep up with the display; stills are decoded by the Windows Imaging Component, which brings JPEG, PNG, GIF, WebP, TIFF, BMP and ICO without a single bundled codec. Video plays through a detachable FFmpeg bridge, with frame stepping and frame capture. Adjustments --- exposure, contrast, saturation, gamma, unsharp mask, blur, and resampling up to Lanczos-3 --- are non-destructive, and the same work runs over a whole folder from a dialog or from the command line.">Rubraview</a></h3></div>
+  <div class="ko head"><h3><a href="https://github.com/rubidus-api/rubraview" target="_blank" rel="noopener" title="C와 Windows API만으로 만들어서 가벼운 바탕화면 뷰어이다. 화면은 Direct2D로 그리므로 화면 이동과 서브픽셀 확대가 모니터를 따라오고, 정지 영상은 Windows Imaging Component가 풀어내 JPEG·PNG·GIF·WebP·TIFF·BMP·ICO를 코덱 동봉 없이 바로 연다. 동영상은 떼어낼 수 있는 FFmpeg 다리를 거쳐 재생하며 한 프레임씩 넘기고 그 화면을 저장할 수 있다. 노출·대비·채도·감마·언샵 마스크·흐림과 Lanczos-3까지의 재표본화는 원본을 건드리지 않고, 같은 작업을 대화 상자에서든 명령줄에서든 폴더 전체에 돌릴 수 있다.">Rubraview</a></h3></div>
+  <div class="en"><p class="lead">A Windows multimedia viewer, video player, and batch image processor in pure C23 and WinAPI.</p></div>
+  <div class="ko"><p class="lead">순수 C23과 WinAPI로 만든 Windows 멀티미디어 뷰어 겸 동영상 재생기, 일괄 이미지 처리기.</p></div>
+  <div class="en"><p class="inline"><a href="https://github.com/rubidus-api/rubraview/releases/download/v0.0.17/rubraview-v0.0.17.zip" title="zip archive">ZIP</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/rubraview/releases/tag/v0.0.17" title="Release page / 릴리스 페이지">Release</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/rubraview" title="Source repository / 소스 저장소">GitHub</a></p></div>
+  <div class="ko"><p class="inline"><a href="https://github.com/rubidus-api/rubraview/releases/download/v0.0.17/rubraview-v0.0.17.zip" title="zip archive">ZIP</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/rubraview/releases/tag/v0.0.17" title="Release page / 릴리스 페이지">릴리스</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/rubraview" title="Source repository / 소스 저장소">GitHub</a></p></div>
+</div>
+</section>
+
+<section class="group" id="g-android">
+<div class="pairs">
+  <div class="en"><h2>Android apps</h2><p class="small">Plain Java against the Android framework, old devices included.</p></div>
+  <div class="ko"><h2>안드로이드 앱</h2><p class="small">안드로이드 프레임워크만 쓰는 순수 자바, 오래된 기기까지.</p></div>
+</div>
+</section>
+
+<section id="reteclock_apk">
+<div class="pairs">
+  <div class="en head"><h3><a href="https://github.com/rubidus-api/reteclock_apk" target="_blank" rel="noopener" title="A full-screen clock for a phone, a tablet or a television. It is written in plain Java against the Android framework alone and still runs on very old releases, so a retired device becomes a useful clock again. Background slideshows (including GIFs), colour palettes, burn-in shifting, screensaver integration, a layout you can draw yourself, and a preset-driven pomodoro timer with spoken and musical cues and an optional CSV log. On a television it is driven with the remote, and it puts a banner on the home screen.">ReteClock</a></h3></div>
+  <div class="ko head"><h3><a href="https://github.com/rubidus-api/reteclock_apk" target="_blank" rel="noopener" title="거치대에 세워 둔 폰과 태블릿, 그리고 텔레비전을 위한 전체 화면 시계이다. 안드로이드 프레임워크만 쓰는 순수 자바로 작성해 아주 오래된 버전에서도 돌아가므로, 은퇴한 기기를 다시 시계로 쓸 수 있다. 배경 슬라이드쇼(GIF 포함), 색 팔레트, 번인 방지 이동, 화면보호기 연동, 직접 그리는 배치, 그리고 프리셋 기반 뽀모도로 타이머(음성·음악 신호와 CSV 기록)를 갖추고 있다. 텔레비전에서는 리모컨으로 다루고, 홈 화면에 배너로 선다.">ReteClock</a></h3></div>
+  <div class="en"><p class="lead">A full-screen digital clock, dock screensaver, and pomodoro timer for Android — old devices first.</p></div>
+  <div class="ko"><p class="lead">전체 화면 디지털 시계·거치 화면보호기·뽀모도로 타이머 안드로이드 앱. 오래된 기기 우선.</p></div>
+  <div class="en"><p class="inline"><a href="https://github.com/rubidus-api/reteclock_apk/releases/download/v0.51.0/reteclock-0.51.0.apk" title="Android package">APK</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/reteclock_apk/releases/tag/v0.51.0" title="Release page / 릴리스 페이지">Release</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/reteclock_apk" title="Source repository / 소스 저장소">GitHub</a></p></div>
+  <div class="ko"><p class="inline"><a href="https://github.com/rubidus-api/reteclock_apk/releases/download/v0.51.0/reteclock-0.51.0.apk" title="Android package">APK</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/reteclock_apk/releases/tag/v0.51.0" title="Release page / 릴리스 페이지">릴리스</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/reteclock_apk" title="Source repository / 소스 저장소">GitHub</a></p></div>
+</div>
+</section>
+
+<section id="retekey_apk">
+<div class="pairs">
+  <div class="en head"><h3><a href="https://github.com/rubidus-api/retekey_apk" target="_blank" rel="noopener" title="An input method for Android written in plain Java. It carries several layouts --- a uniform ten-column grid derived from QWERTY, Cheonjiin, Naratgeul and 2beolsik --- with Hanja conversion both ways, a floating keyboard, and honest support for hardware keys. It aims at correct Hangul composition and predictable behaviour in code editors and terminals, where ordinary keyboards tend to guess.">ReteKey</a></h3></div>
+  <div class="ko head"><h3><a href="https://github.com/rubidus-api/retekey_apk" target="_blank" rel="noopener" title="순수 자바로 만든 안드로이드 입력기이다. 자판이 여럿이다 --- QWERTY에서 유도한 10열 균일 격자, 천지인, 나랏글, 2벌식 --- 한자 변환은 양방향이고, 떠 있는 키보드와 물리 키보드도 지원한다. 코드 편집기와 터미널처럼 보통 키보드가 자꾸 추측을 하는 자리에서, 정확한 한글 조합과 예측 가능한 동작을 목표로 한다.">ReteKey</a></h3></div>
+  <div class="en"><p class="lead">A standards-compliant Android Hangul keyboard tuned for developers.</p></div>
+  <div class="ko"><p class="lead">개발자를 위해 다듬은, 표준을 지키는 안드로이드 한글 키보드.</p></div>
+  <div class="en"><p class="inline"><a href="https://github.com/rubidus-api/retekey_apk/releases/download/v0.2.0/retekey-0.2.0.apk" title="Android package">APK</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/retekey_apk/releases/tag/v0.2.0" title="Release page / 릴리스 페이지">Release</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/retekey_apk" title="Source repository / 소스 저장소">GitHub</a></p></div>
+  <div class="ko"><p class="inline"><a href="https://github.com/rubidus-api/retekey_apk/releases/download/v0.2.0/retekey-0.2.0.apk" title="Android package">APK</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/retekey_apk/releases/tag/v0.2.0" title="Release page / 릴리스 페이지">릴리스</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/retekey_apk" title="Source repository / 소스 저장소">GitHub</a></p></div>
+</div>
+</section>
+
+<section id="reteget_apk">
+<div class="pairs">
+  <div class="en head"><h3><a href="https://github.com/rubidus-api/reteget_apk" target="_blank" rel="noopener" title="A lightweight, standalone file and APK downloader for legacy Android devices (Android 2.3+ Gingerbread through Android 4.x KitKat and newer). It bridges the gap on vintage hardware cut off from modern app stores, expired root certificates, and broken stock browsers. Force-enables TLS 1.2 with modern bundled Root CAs, supports URL release templates ({1}, {2}, {version}) for quick versioned downloads, multi-algorithm checksum verification (SHA-256, SHA-1, MD5, SHA-512), APK signing certificate and author continuity verification, preset management with download metadata, direct HTTP and passive FTP, and one-touch APK installation. Single-dex pure Java with zero external dependencies.">ReteGet</a></h3></div>
+  <div class="ko head"><h3><a href="https://github.com/rubidus-api/reteget_apk" target="_blank" rel="noopener" title="구형 안드로이드 기기(Android 2.3 진저브레드 ~ Android 4.x 킷캣 이상)를 위한 독립형 초경량 파일 및 APK 다운로더이다. 공식 앱 마켓 지원 중단, 루트 인증서 만료, 구형 브라우저 먹통으로 현대 웹과 단절된 기기를 다시 살려낸다. TLS 1.2 강제 활성화와 최신 루트 CA 번들 탑재, 버전 번호만 넣으면 완성되는 릴리즈 URL 템플릿({1}, {2}, {version}), 다중 해시 체크섬 검증(SHA-256, SHA-1, MD5, SHA-512), APK 서명 및 제작자 연속성 검증, 다운로드 이력 메타데이터가 보존되는 프리셋 관리, 순수 HTTP 및 패시브 FTP, 다운로드 후 원터치 APK 설치 연동을 제공한다. 외부 라이브러리 없이 단일 Dex 순수 자바로 동작한다.">ReteGet</a></h3></div>
+  <div class="en"><p class="lead">A lightweight standalone file and APK downloader for legacy Android — old devices first.</p></div>
+  <div class="ko"><p class="lead">구형 안드로이드 기기를 위한 초경량 독립형 파일 및 APK 다운로더. 오래된 기기 우선.</p></div>
+  <div class="en"><p class="inline"><a href="https://github.com/rubidus-api/reteget_apk/releases/download/v0.4.1/reteget-0.4.1.apk" title="Android package">APK</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/reteget_apk/releases/tag/v0.4.1" title="Release page / 릴리스 페이지">Release</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/reteget_apk" title="Source repository / 소스 저장소">GitHub</a></p></div>
+  <div class="ko"><p class="inline"><a href="https://github.com/rubidus-api/reteget_apk/releases/download/v0.4.1/reteget-0.4.1.apk" title="Android package">APK</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/reteget_apk/releases/tag/v0.4.1" title="Release page / 릴리스 페이지">릴리스</a><span class="sep"> · </span><a href="https://github.com/rubidus-api/reteget_apk" title="Source repository / 소스 저장소">GitHub</a></p></div>
+</div>
+</section>
+
+<footer>
+<div class="pairs">
+  <div class="en"><p class="small">Sources and releases: <a href="https://github.com/rubidus-api">github.com/rubidus-api</a></p></div>
+  <div class="ko"><p class="small">소스와 릴리스: <a href="https://github.com/rubidus-api">github.com/rubidus-api</a></p></div>
+</div>
+</footer>
+</main>
+</body>
+</html>
